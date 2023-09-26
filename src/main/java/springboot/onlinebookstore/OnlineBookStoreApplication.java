@@ -31,6 +31,7 @@ public class OnlineBookStoreApplication {
                 book.setDescription("Magic adventures");
                 bookService.save(book);
                 System.out.println(bookService.findAll());
+                System.out.println(bookService.findAll());
             }
         };
     }
