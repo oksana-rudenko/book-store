@@ -24,10 +24,12 @@ public class PriceSpecificationProvider implements SpecificationProvider<Book> {
                 minPrice = 0;
                 maxPrice = Integer.parseInt(params[0]);
             }
-            Predicate lowPrice = criteriaBuilder.gt(root.get("price"),
-                    BigDecimal.valueOf(minPrice));
-            Predicate highPrice = criteriaBuilder.lt(root.get("price"),
-                    BigDecimal.valueOf(maxPrice));
+            Predicate lowPrice = criteriaBuilder.or(
+                    criteriaBuilder.equal(root.get("price"), BigDecimal.valueOf(minPrice)),
+                    criteriaBuilder.gt(root.get("price"), BigDecimal.valueOf(minPrice)));
+            Predicate highPrice = criteriaBuilder.or(
+                    criteriaBuilder.equal(root.get("price"), BigDecimal.valueOf(maxPrice)),
+                    criteriaBuilder.lt(root.get("price"), BigDecimal.valueOf(maxPrice)));
             return criteriaBuilder.and(lowPrice, highPrice);
         };
     }
