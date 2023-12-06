@@ -1,4 +1,4 @@
-package springboot.onlinebookstore.dto;
+package springboot.onlinebookstore.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Min;
