@@ -2,8 +2,8 @@ package springboot.onlinebookstore.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import springboot.onlinebookstore.dto.user.UserRegistrationRequestDto;
-import springboot.onlinebookstore.dto.user.UserResponseDto;
+import springboot.onlinebookstore.dto.user.request.UserRegistrationRequestDto;
+import springboot.onlinebookstore.dto.user.response.UserResponseDto;
 import springboot.onlinebookstore.exception.EntityNotFoundException;
 import springboot.onlinebookstore.exception.RegistrationException;
 import springboot.onlinebookstore.mapper.UserMapper;

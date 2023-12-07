@@ -1,4 +1,4 @@
-package springboot.onlinebookstore.dto.user;
+package springboot.onlinebookstore.dto.user.response;
 
 public record UserResponseDto(
         Long id,

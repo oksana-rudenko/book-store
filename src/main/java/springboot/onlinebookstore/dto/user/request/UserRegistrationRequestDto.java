@@ -1,4 +1,4 @@
-package springboot.onlinebookstore.dto.user;
+package springboot.onlinebookstore.dto.user.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -20,13 +20,9 @@ public class UserRegistrationRequestDto {
     @NotNull
     @Length(min = 8, max = 100)
     private String password;
-    @NotNull
-    @Length(min = 8, max = 100)
     private String repeatPassword;
-    @NotNull
     @NotBlank
     private String firstName;
-    @NotNull
     @NotBlank
     private String lastName;
     private String shippingAddress;

@@ -2,9 +2,9 @@ package springboot.onlinebookstore.service;
 
 import java.util.List;
 import org.springframework.data.domain.Pageable;
-import springboot.onlinebookstore.dto.book.BookDto;
 import springboot.onlinebookstore.dto.book.BookSearchParametersDto;
-import springboot.onlinebookstore.dto.book.CreateBookRequestDto;
+import springboot.onlinebookstore.dto.book.request.CreateBookRequestDto;
+import springboot.onlinebookstore.dto.book.response.BookDto;
 
 public interface BookService {
     BookDto save(CreateBookRequestDto requestDto);

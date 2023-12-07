@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springboot.onlinebookstore.dto.book.BookDto;
 import springboot.onlinebookstore.dto.book.BookSearchParametersDto;
-import springboot.onlinebookstore.dto.book.CreateBookRequestDto;
+import springboot.onlinebookstore.dto.book.request.CreateBookRequestDto;
+import springboot.onlinebookstore.dto.book.response.BookDto;
 import springboot.onlinebookstore.service.BookService;
 
 @Tag(name = "Book management", description = "Endpoints for managing books")
