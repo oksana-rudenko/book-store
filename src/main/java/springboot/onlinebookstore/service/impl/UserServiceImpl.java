@@ -31,15 +31,12 @@ public class UserServiceImpl implements UserService {
             throw new RegistrationException("User with such email is already present. "
                     + "Please, enter another email");
         }
-        User user = userMapper.toModel(requestDto);
-        /*
+        User user = new User();
         user.setEmail(requestDto.getEmail());
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
         user.setFirstName(requestDto.getFirstName());
         user.setLastName(requestDto.getLastName());
         user.setShippingAddress(requestDto.getShippingAddress());
-
-         */
         Role userRole = roleRepository.findByName(Role.RoleName.USER)
                 .orElseThrow(() -> new RegistrationException("Can't find role: "
                         + Role.RoleName.USER));

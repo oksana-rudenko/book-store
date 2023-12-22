@@ -30,9 +30,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                   UserDetailsService userDetailsService)
-            throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http, UserDetailsService userDetailsService
+    ) throws Exception {
         return http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
