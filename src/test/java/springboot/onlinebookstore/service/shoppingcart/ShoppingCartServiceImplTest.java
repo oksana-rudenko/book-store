@@ -1,5 +1,18 @@
 package springboot.onlinebookstore.service.shoppingcart;
 
+import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,16 +37,6 @@ import springboot.onlinebookstore.repository.cartitem.CartItemRepository;
 import springboot.onlinebookstore.repository.shoppingcart.ShoppingCartRepository;
 import springboot.onlinebookstore.repository.user.UserRepository;
 import springboot.onlinebookstore.service.impl.ShoppingCartServiceImpl;
-
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.junit.Assert.assertThrows;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ShoppingCartServiceImplTest {
@@ -116,7 +119,9 @@ class ShoppingCartServiceImplTest {
     }
 
     @Test
-    @DisplayName("Add new item to shopping cart, cart is not found, returns EntityNotFoundException")
+    @DisplayName("""
+            Add new item to shopping cart, cart is not found, returns EntityNotFoundException
+            """)
     void addItemToCart_CartNotFound_ReturnsException() {
         CartItemRequestDto cartItemRequestDto =
                 new CartItemRequestDto(getBookEntity().getId(), QUANTITY);

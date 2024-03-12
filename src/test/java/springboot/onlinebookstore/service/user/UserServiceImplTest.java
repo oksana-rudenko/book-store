@@ -1,8 +1,12 @@
 package springboot.onlinebookstore.service.user;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 import java.util.Set;
@@ -48,11 +52,11 @@ class UserServiceImplTest {
     @DisplayName("Register new user, returns valid user response dto")
     void register_ValidData_ReturnsValidResponseDto() throws RegistrationException {
         UserRegistrationRequestDto userRegistrationRequestDto = getUserRegistrationRequestDto();
-        User user = getUser();
-        UserResponseDto userResponseDto = new UserResponseDto(USER_ID,
-                USER_EMAIL, USER_FIRST_NAME, USER_LAST_NAME, USER_ADDRESS);
         Role userRole = new Role();
         userRole.setName(Role.RoleName.USER);
+        UserResponseDto userResponseDto = new UserResponseDto(USER_ID,
+                USER_EMAIL, USER_FIRST_NAME, USER_LAST_NAME, USER_ADDRESS);
+        User user = getUser();
         when(userRepository.findByEmail(USER_EMAIL)).thenReturn(Optional.empty());
         when(passwordEncoder.encode(userRegistrationRequestDto.getPassword()))
                 .thenReturn(userRegistrationRequestDto.getPassword());

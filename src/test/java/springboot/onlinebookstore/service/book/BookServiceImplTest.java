@@ -15,9 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -26,14 +23,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import springboot.onlinebookstore.dto.book.BookSearchParametersDto;
 import springboot.onlinebookstore.dto.book.request.CreateBookRequestDto;
 import springboot.onlinebookstore.dto.book.response.BookDtoWithoutCategoryIds;
@@ -64,7 +58,6 @@ class BookServiceImplTest {
     private BookMapper bookMapper;
     @Mock
     private BookSpecificationBuilder bookSpecificationBuilder;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeAll
     static void beforeAll() {
@@ -110,18 +103,15 @@ class BookServiceImplTest {
 
     @Test
     @DisplayName("Find all books from database, returns valid list of one book")
-    void findAll_ValidBookList_ReturnsValidList() throws JsonProcessingException {
+    void findAll_ValidBookList_ReturnsValidList() {
         Pageable pageable = PageRequest.of(PAGE_NUMBER, PAGE_SIZE);
         List<Book> books = Collections.singletonList(BOOK);
-        String str = objectMapper.writeValueAsString(BOOK);
         Page<Book> bookPage = new PageImpl<>(books, pageable, books.size());
         when(bookMapper.toDto(BOOK)).thenReturn(RESPONSE_DTO);
         when(bookRepository.findAll(pageable)).thenReturn(bookPage);
         List<BookResponseDto> expected = Collections.singletonList(RESPONSE_DTO);
         List<BookResponseDto> actual = bookService.findAll(pageable);
         Assertions.assertEquals(expected, actual);
-
-        ResultMatcher value = MockMvcResultMatchers.jsonPath("$.book").value(BOOK);
     }
 
     @Test
