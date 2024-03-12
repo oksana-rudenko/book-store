@@ -10,9 +10,15 @@ databaseChangeLog:
                   name: book_id
                   type: bigint
                   constraints:
+                    foreignKeyName: fk_book
+                    references: books(id)
                     nullable: false
+                    primaryKey: true
               - column:
                   name: category_id
                   type: bigint
                   constraints:
+                    foreignKeyName: fk_category
+                    references: categories(id)
                     nullable: false
+                    primaryKey: true
